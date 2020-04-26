@@ -114,6 +114,7 @@ def Craft():
 def index():
    search=""
    # search=request.form['search']
+   # if valX == "nothing":
    try:
       search=request.form['search']
    except:
@@ -123,7 +124,12 @@ def index():
    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%{search}%"''')
    df=df.append(query_db(q))
    print(df)
+   # else:
+      # q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%{valX}%"''')
+      # df = que
    return(render_template('/product_list.html',data=df))
+
+
 
 @app.route('/cart', methods=['GET'])
 def addToCart():
@@ -212,18 +218,14 @@ def add_user():
       conn.commit()
       return redirect(url_for('login',code=302))
 
-@app.route('/product_list',methods=['GET','POST'])
-def product_list():
-   search=""
-   try:
-      search=request.form['search']
-   except:
-      print("dd")
-   q=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%{search}%") ORDER BY [S.NO.] DESC LIMIT 10''')
-   df=query_db(q)
-   print(df)
-   print(search)
-   return(render_template('/product_list.html',data=df))
+@app.route('/product_list?catx=<catX>',methods=['GET','POST'])
+def product_list(catX="0"):
+   print(type(catX))
+   catX = int(catX)
+   dictX = {1:"Cooking",2:"Circuits",3:"Workshop",4:"Craft"}
+   category = dictX[catX]
+   q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%{category}%"''')
+   return(render_template('/product_list.html',data=query_db(q)))
 
 
 @app.route('/myCart',methods=['GET','POST'])
