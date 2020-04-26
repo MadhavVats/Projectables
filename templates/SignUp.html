@@ -2,7 +2,6 @@
 <html lang="zxx">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>eCommerce HTML-5 Template </title>
@@ -23,7 +22,6 @@
         <link rel="stylesheet" href="static/css/slick.css">
         <link rel="stylesheet" href="static/css/nice-select.css">
         <link rel="stylesheet" href="static/css/style.css">
-
 </head>
 
 <body>
@@ -58,11 +56,11 @@
                                 </div>
                                 <div class="header-info-right">
                                    <ul>
-                                       <li><a href="{{ url_for ('login') }}">My Account </a></li>
-                                       <li><a href="{{ url_for ('product_list') }}">Wish List  </a></li>
-                                       <li><a href="{{ url_for ('cart') }}">Shopping</a></li>
-                                       <li><a href="{{ url_for ('cart') }}">Cart</a></li>
-                                       <li><a href="{{ url_for ('checkout') }}">My Bids</a></li>
+                                       <li><a href="{{ url_for('login') }}">My Account </a></li>
+                                       <li><a href="{{ url_for('product_list') }}">Wish List  </a></li>
+                                       <li><a href="{{ url_for('cart') }}">Shopping</a></li>
+                                       <li><a href="{{ url_for('cart') }}">Cart</a></li>
+                                       <li><a href="{{ url_for('checkout') }}">My Bids</a></li>
                                    </ul>
                                 </div>
                             </div>
@@ -75,7 +73,7 @@
                             <!-- Logo -->
                             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
                                 <div class="logo">
-                                  <a href="{{ url_for ('index_page') }}"><img src="static/img/logo/logo.png" alt=""></a>
+                                  <a href="{{ url_for('index_page') }}"><img src="static/img/logo/logo.png" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -83,12 +81,12 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="{{ url_for ('index_page') }}">Home</a></li>
+                                            <li><a href="{{ url_for('index_page') }}">Home</a></li>
                                             <li><a href="{{ url_for('Catagori') }}">Catagori</a></li>
                                             <li class="hot"><a href="#">Latest</a>
                                                 <ul class="submenu">
-                                                    <li><a href="{{ url_for ('product_list') }}"> Product list</a></li>
-                                                    <li><a href="{{ url_for ('index') }}"> Product Details</a></li>
+                                                    <li><a href="{{ url_for('product_list') }}"> Product list</a></li>
+                                                    <li><a href="single-product.html"> Product Details</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="{{ url_for('blog') }}">Blog</a>
@@ -99,13 +97,13 @@
                                             </li>
                                             <li><a href="#">Pages</a>
                                                 <ul class="submenu">
-                                                    <li><a href="{{ url_for ('login') }}">Login</a></li>
-                                                    <li><a href="{{ url_for ('cart') }}">Card</a></li>
+                                                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                                                    <li><a href="{{ url_for('cart') }}">Card</a></li>
                                                     <li><a href="{{ url_for('elements') }}">Element</a></li>
                                                     <li><a href="{{ url_for('about') }}">About</a></li>
                                                     <li><a href="{{ url_for('Confirmation') }}">Confirmation</a></li>
-                                                    <li><a href="{{ url_for ('cart') }}">Shopping Cart</a></li>
-                                                    <li><a href="{{ url_for ('checkout') }}">My Bids</a></li>
+                                                    <li><a href="{{ url_for('cart') }}">Shopping Cart</a></li>
+                                                    <li><a href="{{ url_for('checkout') }}">My Bids</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="{{ url_for('contact') }}">Contact</a></li>
@@ -118,9 +116,8 @@
                                     <li class="d-none d-xl-block">
                                         <div class="form-box f-right ">
                                             <form action="/" method="post">
-                                            <input type="text" name="search" placeholder="search">
-                                            </form>
-                                            <div class="search-icon">
+                                                <input type="text" name="search" placeholder="search">
+                                                </form>                                            <div class="search-icon">
                                                 <i class="fas fa-search special-tag"></i>
                                             </div>
                                         </div>
@@ -158,7 +155,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>product list</h2>
+                            <h2>Login</h2>
                         </div>
                     </div>
                 </div>
@@ -167,152 +164,71 @@
     </div>
     <!-- slider Area End-->
 
-    <!-- product list part start-->
-    <section class="product_list section_padding">
+    <!--================login_part Area =================-->
+    <section class="login_part section_padding ">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="product_sidebar">
-                        <div class="single_sedebar">
-                            <form action="/" method="post">
-                                <input type="text" name="search" placeholder="search">
-                                <i class="ti-search"></i>
+            <div class="row align-items-center">
+                <!-- <div class="col-lg-6 col-md-6">
+                    <div class="login_part_text text-center">
+                        <div class="login_part_text_iner">
+                            <h2>New to our Shop?</h2>
+                            <p>There are advances being made in science and technology
+                                everyday, and a good example of this is the</p>
+                            <a href="#" class="btn_3">Create an Account</a>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Sign up <br>
+                                Hurry Now</h3>
+                            <form class="row contact_form" action="/SignUp/" method="post">
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="name" name="name" value=""
+                                        placeholder="name">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="Username" name="Username" value=""
+                                        placeholder="Username">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="password" class="form-control" id="Password" name="Password" value=""
+                                        placeholder="Password">
+                                </div>
+
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="number" class="form-control" id="PhoneNumber" name="PhoneNumber" value=""
+                                        placeholder="PhoneNumber">
+                                </div>
+
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="email" class="form-control" id="email" name="email" value=""
+                                        placeholder="email">
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <!-- <div class="creat_account d-flex align-items-center">
+                                        <input type="checkbox" id="f-option" name="selector">
+                                        <label for="f-option">Remember me</label>
+                                    </div> -->
+                                    <button type="submit" value="submit" class="btn_3">
+                                        SignUp
+                                    </button>
+                                    <!-- <a class="lost_pass" href="#">forget password?</a> -->
+                                </div>
                             </form>
                         </div>
-                        <div class="single_sedebar">
-                            <div class="select_option">
-                                <div class="select_option_list">Category <i class="right fas fa-caret-down"></i> </div>
-                                <div class="select_option_dropdown">
-                                    <p><a href="/Cooking">Cooking</a></p>
-                                    <p><a href="/Circuits"></a>Circuits</a></p>
-                                    <p><a href="/Workshop"></a>Workshop</a></p>
-                                    <p><a href="/Craft">Craft</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single_sedebar">
-                            <div class="select_option">
-                                <div class="select_option_list">Type <i class="right fas fa-caret-down"></i> </div>
-                                <div class="select_option_dropdown">
-                                    <p><a href="#">Type 1</a></p>
-                                    <p><a href="#">Type 2</a></p>
-                                    <p><a href="#">Type 3</a></p>
-                                    <p><a href="#">Type 4</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="product_list">
-                        <div class="row">
-                            {% for key,value in data.iterrows() %}
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="single_product_item">
-                                    <!-- D:\gith\DBMS\static\img\product\59.jpg -->
-                                    <img src="static\img\product\{{value['Image']}}" alt="" class="img-fluid">
-                                    <h3> <a href="{{ url_for ('onProductClick',idX=value['PROJECT_ID']) }}">{{ value['TITLE'] }}</a> </h3>
-                                    <p>From ${{ value['COST'] }}</p>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                        <div class="load_more_btn text-center">
-                            <a href="#" class="btn_3">Load More</a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- product list part end-->
-
-    <!-- client review part here -->
-    <section class="client_review">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="client_review_slider owl-carousel">
-                        <div class="single_client_review">
-                            <div class="client_img">
-                                <img src="static/img/client.png" alt="#">
-                            </div>
-                            <p>"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering.</p>
-                            <h5>- Micky Mouse</h5>
-                        </div>
-                        <div class="single_client_review">
-                            <div class="client_img">
-                                <img src="static/img/client_1.png" alt="#">
-                            </div>
-                            <p>"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering.</p>
-                            <h5>- Micky Mouse</h5>
-                        </div>
-                        <div class="single_client_review">
-                            <div class="client_img">
-                                <img src="static/img/client_2.png" alt="#">
-                            </div>
-                            <p>"Working in conjunction with humanitarian aid agencies, we have supported programmes to help alleviate human suffering.</p>
-                            <h5>- Micky Mouse</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- client review part end -->
-
-    <!-- Shop Method Start-->
-    <div class="shop-method-area section-padding30">
-        <div class="container">
-            <div class="row d-flex justify-content-between">
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <div class="single-method mb-40">
-                        <i class="ti-package"></i>
-                        <h6>Free Shipping Method</h6>
-                        <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <div class="single-method mb-40">
-                        <i class="ti-unlock"></i>
-                        <h6>Secure Payment System</h6>
-                        <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <div class="single-method mb-40">
-                        <i class="ti-reload"></i>
-                        <h6>Secure Payment System</h6>
-                        <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Shop Method End-->
-
-    <!-- subscribe part here -->
-    <section class="subscribe_part section_padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="subscribe_part_content">
-                        <h2>Get promotions & updates!</h2>
-                        <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
-                        <div class="subscribe_form">
-                            <input type="email" placeholder="Enter your mail">
-                            <a href="#" class="btn_1">Subscribe</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- subscribe part end -->
+    <!--================login_part end =================-->
 
     <footer>
         <!-- Footer Start-->
-        <div class="footer-area footer-padding">
+        <div class="footer-area footer-padding2">
             <div class="container">
                 <div class="row d-flex justify-content-between">
                     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
@@ -320,7 +236,7 @@
                          <div class="single-footer-caption mb-30">
                               <!-- logo -->
                              <div class="footer-logo">
-                                 <a href="{{ url_for ('index_page') }}"><img src="static/img/logo/logo2_footer.png" alt=""></a>
+                                 <a href="{{ url_for('index_page') }}"><img src="static/img/logo/logo2_footer.png" alt=""></a>
                              </div>
                              <div class="footer-tittle">
                                  <div class="footer-pera">
@@ -377,7 +293,7 @@
                      <div class="footer-copy-right">
                          <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>                   </div>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>                </div>
                  </div>
                   <div class="col-xl-5 col-lg-5 col-md-5">
                      <div class="footer-copy-right f-right">
@@ -398,48 +314,41 @@
     </footer>
 
 <!-- JS here -->
-        <!-- All JS Custom Plugins Link Here here -->
-        <script src="./static/js/vendor/modernizr-3.5.0.min.js"></script>
 
-        <!-- Jquery, Popper, Bootstrap -->
-        <script src="./static/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="./static/js/popper.min.js"></script>
-        <script src="./static/js/bootstrap.min.js"></script>
-        <!-- Jquery Mobile Menu -->
-        <script src="./static/js/jquery.slicknav.min.js"></script>
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="./static/js/vendor/modernizr-3.5.0.min.js"></script>
 
-        <!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="./static/js/owl.carousel.min.js"></script>
-        <script src="./static/js/slick.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./static/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./static/js/popper.min.js"></script>
+    <script src="./static/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="./static/js/jquery.slicknav.min.js"></script>
 
-        <!-- One Page, Animated-HeadLin -->
-        <script src="./static/js/wow.min.js"></script>
-        <script src="./static/js/animated.headline.js"></script>
-        <script src="./static/js/jquery.magnific-popup.js"></script>
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./static/js/owl.carousel.min.js"></script>
+    <script src="./static/js/slick.min.js"></script>
 
-        <!-- Scrollup, nice-select, sticky -->
-        <script src="./static/js/jquery.scrollUp.min.js"></script>
-        <script src="./static/js/jquery.nice-select.min.js"></script>
-        <script src="./static/js/jquery.sticky.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./static/js/wow.min.js"></script>
+    <script src="./static/js/animated.headline.js"></script>
 
-        <!-- contact js -->
-        <script src="./static/js/contact.js"></script>
-        <script src="./static/js/jquery.form.js"></script>
-        <script src="./static/js/jquery.validate.min.js"></script>
-        <script src="./static/js/mail-script.js"></script>
-        <script src="./static/js/jquery.ajaxchimp.min.js"></script>
+    <!-- Scrollup, nice-select, sticky -->
+    <script src="./static/js/jquery.scrollUp.min.js"></script>
+    <script src="./static/js/jquery.nice-select.min.js"></script>
+    <script src="./static/js/jquery.sticky.js"></script>
+    <script src="./static/js/jquery.magnific-popup.js"></script>
 
-        <!-- Jquery Plugins, main Jquery -->
-        <script src="./static/js/plugins.js"></script>
-        <script src="./static/js/main.js"></script>
+    <!-- contact js -->
+    <script src="./static/js/contact.js"></script>
+    <script src="./static/js/jquery.form.js"></script>
+    <script src="./static/js/jquery.validate.min.js"></script>
+    <script src="./static/js/mail-script.js"></script>
+    <script src="./static/js/jquery.ajaxchimp.min.js"></script>
 
-        <!-- swiper js -->
-        <script src="./static/js/swiper.min.js"></script>
-            <!-- swiper js -->
-        <script src="./static/js/mixitup.min.js"></script>
-        <script src="./static/js/jquery.counterup.min.js"></script>
-        <script src="./static/js/waypoints.min.js"></script>
-
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="./static/js/plugins.js"></script>
+    <script src="./static/js/main.js"></script>
 
 </body>
 

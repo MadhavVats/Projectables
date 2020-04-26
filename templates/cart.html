@@ -60,7 +60,7 @@
                                    <li><a href="{{ url_for('product_list') }}">Wish List  </a></li>
                                    <li><a href="{{ url_for('cart') }}">Shopping</a></li>
                                    <li><a href="{{ url_for('cart') }}">Cart</a></li>
-                                   <li><a href="{{ url_for('checkout') }}">Checkout</a></li>
+                                   <li><a href="{{ url_for('checkout') }}">My Bids</a></li>
                                </ul>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                                                 <li><a href="{{ url_for('about') }}">About</a></li>
                                                 <li><a href="{{ url_for('Confirmation') }}">Confirmation</a></li>
                                                 <li><a href="{{ url_for('cart') }}">Shopping Cart</a></li>
-                                                <li><a href="{{ url_for('checkout') }}">Product Checkout</a></li>
+                                                <li><a href="{{ url_for('checkout') }}">My Bids</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="{{ url_for('contact') }}">Contact</a></li>
@@ -115,8 +115,9 @@
                             <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
                                 <li class="d-none d-xl-block">
                                     <div class="form-box f-right ">
-                                        <input type="text" name="Search" placeholder="Search products">
-                                        <div class="search-icon">
+                                      <form action="/" method="post">
+                                        <input type="text" name="search" placeholder="search">
+                                        </form>                                        <div class="search-icon">
                                             <i class="fas fa-search special-tag"></i>
                                         </div>
                                     </div>
@@ -178,19 +179,20 @@
               </tr>
             </thead>
             <tbody>
+              {% for key,value in data.iterrows() %}
               <tr>
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="static/img/arrivel/arrivel_1.png" alt="" />
+                      <img src="static\img\product\{{value['Image']}}" alt="" />
                     </div>
                     <div class="media-body">
-                      <p>Minimalistic shop for multipurpose use</p>
+                      <p>{{ value['TITLE'] }}</p>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <h5>$360.00</h5>
+                  <h5>${{ value['COST'] }}</h5>
                 </td>
                 <td>
                   <div class="product_count">
@@ -210,34 +212,11 @@
                   </div>
                 </td>
                 <td>
-                  <h5>$720.00</h5>
+                  <h5>${{ value['COST'] }}</h5>
                 </td>
+                
               </tr>
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="static/img/arrivel/arrivel_2.png" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>Minimalistic shop for multipurpose use</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>$360.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                      <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                      <input class="input-number" type="text" value="1" min="0" max="10">
-                      <span class="input-number-increment"> <i class="ti-plus"></i></span>
-                  </div>
-                </td>
-                <td>
-                  <h5>$720.00</h5>
-                </td>
-              </tr>
+              {% endfor %}
               <tr class="bottom_button">
                 <td>
                   <a class="btn_1" href="#">Update Cart</a>

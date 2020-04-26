@@ -3,9 +3,9 @@ import time
 import random as rd
 import sqlite3
 import pandas as pd
-
-# conn = sqlite3.connect('projectables.db')
-# c = conn.cursor()
+import urllib.request as urllibX
+conn = sqlite3.connect('projectables.db')
+c = conn.cursor()
 
 
 # def getContent():
@@ -26,11 +26,28 @@ import pandas as pd
 #     return p
 
 driver = webdriver.Chrome(r"C:\Users\Utsav Singla\Downloads\Compressed\chromedriver_win32\chromedriver.exe")
-driver.get("https://www.instructables.com/projects/?page=2")
-# time.sleep(5)
-# catList =[]
+driver.get("https://www.instructables.com/projects/?page=3")
+time.sleep(5)
+catList =[]
 
-# for i in range(1,61):
+
+# /html/body/main/div/div/div[2]/div[2]/div[1]/a/img
+for i in range(9,61):
+    img = driver.find_element_by_xpath('//*[@id="category-projects-page"]/div/div[2]/div[2]/div[{}]/a/img'.format(i)).get_attribute('data-src')
+    print(img)
+    print(i)
+    # //*[@id="category-projects-page"]/d>>>>>>> b2aab849f2f517fcbaedd6f20222f43e9d8e826a
+# iv/div[2]/div[2]/div[8]/a/img
+    # 
+    # /html/body/main/div/div/div[2]/div[2]/div[12]/a/img
+    # /html/body/main/div/div/div[2]/div[2]/div[12]/a/img
+    # /html/body/main/div/div/div[2]/div[2]/div[11]/a/img
+    savAdd = "{}.jpg".format(i)
+    urllibX.urlretrieve(img, savAdd)
+
+    # updateTable = '''UPDATE Project SET IMAGE = ? WHERE PROJECT_ID = ?;'''
+    # dataInput = (savAdd,i)
+    # c.execute(updateTable,dataInput)
 #     driver.find_element_by_xpath('//*[@id="category-projects-page"]/div/div[2]/div[2]/div[{}]/div[1]/strong/a'.format(i)).click()
 #     author = driver.find_element_by_xpath('/html/body/main/article/header/div[1]/div[1]/a[1]').text
 #     category = driver.find_element_by_xpath('/html/body/main/article/header/div[1]/div[1]/a[2]').text
@@ -64,53 +81,41 @@ driver.get("https://www.instructables.com/projects/?page=2")
 #     c.execute(queryX, dataX)
 
 #     print(c.lastrowid)
-#     conn.commit()
+    conn.commit()
 #     driver.get("https://www.instructables.com/projects/?page=2")
-#     time.sleep(5)
-# '''
+    # time.sleep(5)
+'''
 
-# /html/body/main/div/div/div[2]/div/div[1]/div[1]
-# /html/body/main/div/div/div[2]/div/div[2]/div[1]
-# /html/body/main/div/div/div[2]/div/div[3]/div[1]
-
-
-# Links of Projects
-# /html/body/main/div/div/div[2]/div/div[2]/div[1]/strong/a
-# /html/body/main/div/div/div[2]/div/div[1]/div[1]/strong/a
-# //*[@id="category-projects-page"]/div/div[2]/div[2]/div[1]/div[1]/strong/a
-# //*[@id="category-projects-page"]/div/div[2]/div[2]/div[2]/div[1]/strong/a
+/html/body/main/div/div/div[2]/div/div[1]/div[1]
+/html/body/main/div/div/div[2]/div/div[2]/div[1]
+/html/body/main/div/div/div[2]/div/div[3]/div[1]
 
 
-# Author Name
-# /html/body/main/article/header/div[1]/div[1]/a[1]
-# /html/body/main/article/header/div[1]/div[1]/a[1]
+Links of Projects
+/html/body/main/div/div/div[2]/div/div[2]/div[1]/strong/a
+/html/body/main/div/div/div[2]/div/div[1]/div[1]/strong/a
+//*[@id="category-projects-page"]/div/div[2]/div[2]/div[1]/div[1]/strong/a
+//*[@id="category-projects-page"]/div/div[2]/div[2]/div[2]/div[1]/strong/a
 
 
-# Category Inside
-# /html/body/main/article/header/div[1]/div[1]/a[2]
-# /html/body/main/article/header/div[1]/div[1]/a[2]
-
-# Title
-# /html/body/main/article/header/h1
+Author Name
+/html/body/main/article/header/div[1]/div[1]/a[1]
+/html/body/main/article/header/div[1]/div[1]/a[1]
 
 
-# Step Body
-# /html/body/main/article/div[1]/div[1]/section[1]/div[3]/p
-# /html/body/main/article/div[1]/div[1]/section[1]/div[3]/p[1]
-# /html/body/main/article/div[1]/div[1]/section[1]/div[2]/p[1]
-# /html/body/main/article/div[1]/div[1]/section[1]/div[3]/p[1]
-# /html/body/main/article/div[1]/div[1]/section[1]/div[2]/p[1]
+Category Inside
+/html/body/main/article/header/div[1]/div[1]/a[2]
+/html/body/main/article/header/div[1]/div[1]/a[2]
+
+Title
+/html/body/main/article/header/h1
 
 
+Step Body
+/html/body/main/article/div[1]/div[1]/section[1]/div[3]/p
+/html/body/main/article/div[1]/div[1]/section[1]/div[3]/p[1]
+/html/body/main/article/div[1]/div[1]/section[1]/div[2]/p[1]
+/html/body/main/article/div[1]/div[1]/section[1]/div[3]/p[1]
+/html/body/main/article/div[1]/div[1]/section[1]/div[2]/p[1]
 
-
-# /html/body/main/div/div/div[2]/div[2]/div[1]/a/img
-
-# /html/body/main/div/div/div[2]/div[2]/div[2]/a/img
-
-# '''
-
-
-import urllib
-
-url
+'''
