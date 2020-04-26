@@ -58,7 +58,7 @@
                                 <div class="header-info-right">
                                    <ul>
                                        <li><a href="{{ url_for('login') }}">My Account </a></li>
-                                       <li><a href="{{ url_for('product_list') }}">Wish List  </a></li>
+                                       <li><a href="{{ url_for('index') }}">Wish List  </a></li>
                                        <li><a href="{{ url_for('cart') }}">Shopping</a></li>
                                        <li><a href="{{ url_for('cart') }}">Cart</a></li>
                                        <li><a href="{{ url_for('checkout') }}">My Bids</a></li>
@@ -86,7 +86,7 @@
                                             <li><a href="{{ url_for('Catagori') }}">Catagori</a></li>
                                             <li class="hot"><a href="#">Latest</a>
                                                 <ul class="submenu">
-                                                    <li><a href="{{ url_for('product_list') }}"> Product list</a></li>
+                                                    <li><a href="{{ url_for('index') }}"> Product list</a></li>
                                                     <li><a href="single-product.html"> Product Details</a></li>
                                                 </ul>
                                             </li>
@@ -116,8 +116,9 @@
                                 <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
                                     <li class="d-none d-xl-block">
                                         <div class="form-box f-right ">
-                                            <input type="text" name="Search" placeholder="Search products">
-                                            <div class="search-icon">
+                                            <form action="/" method="post">
+                                                <input type="text" name="search" placeholder="search">
+                                                </form>                                            <div class="search-icon">
                                                 <i class="fas fa-search special-tag"></i>
                                             </div>
                                         </div>
