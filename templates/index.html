@@ -206,21 +206,21 @@
                   <div class="col-xl-4 col-lg-6">
                       <div class="single-category mb-30">
                           <div class="category-img">
-                              <img src="static/img/categori/cat1.png" alt="">
+                              <img href ="{{ url_for ('product_list', catX = 1) }}" src="static/img/categori/cat1.png" alt="">
                           </div>
                       </div>
                   </div>
                    <div class="col-xl-4 col-lg-6">
                       <div class="single-category mb-30">
                           <div class="category-img text-center">
-                              <img src="static/img/categori/cat2.png" alt="">
+                              <img href = "{{ url_for ('product_list', catX = 5) }}" src="static/img/categori/cat2.png" alt="">
                           </div>
                       </div>
                   </div>
                   <div class="col-xl-4 col-lg-6">
                       <div class="single-category mb-30">
                           <div class="category-img">
-                              <img src="static/img/categori/cat3.png" alt="">
+                              <img href= "{{ url_for ('product_list', catX = 3) }}" src="static/img/categori/cat3.png" alt="">
                           </div>
                       </div>
                   </div>
@@ -418,7 +418,7 @@
                           </div>
                       </div>
                       <div class="image_box">
-                          <img src="static/img/gallery/gallery2.jpg" alt="" class="image_over">
+                          <img src="static/img/our_team/utsavsingla.jpg" alt="" class="image_over">
                           <div class="overlay">
                             Utsav Singla
                           </div>

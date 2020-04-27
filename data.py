@@ -222,7 +222,7 @@ def add_user():
 def product_list(catX="0"):
    print(type(catX))
    catX = int(catX)
-   dictX = {1:"Cooking",2:"Circuits",3:"Workshop",4:"Craft"}
+   dictX = {1:"Cooking",2:"Circuits",3:"Workshop",4:"Craft",5:"Product"}
    category = dictX[catX]
    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%{category}%"''')
    return(render_template('/product_list.html',data=query_db(q)))
@@ -292,15 +292,7 @@ def checkBid():
       # insertBid(q1)
       return redirect(url_for('onProductClick',idX=currentProductId, code=302))
    
-   # return redirect(url_for('',code =302)
-<<<<<<< HEAD
-
-def getApp():
-   return app
-
-=======
-# SELECT title,category_name FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID
->>>>>>> c54954eaaabd50cb5703fc8dbd77a313c6498f08
+  
+  
 if __name__ == "__main__":
-   
    app.run(debug=True)
