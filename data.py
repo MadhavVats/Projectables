@@ -87,10 +87,6 @@ def getallBids():
       return dfFinal
    except:
       return dfFinal
-                                    # <p><a href="/Cooking/">Cooking</a></p>
-                                    # <p><a href="/Circuits/">Circuits</a></p>
-                                    # <p><a href="/Workshop/">Workshop</a></p>
-                                    # <p><a href="/Craft/">Craft</a></p>
 @app.route('/Cooking/', methods=['GET','POST'])
 def Cooking():
    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Cooking%"''')
@@ -253,8 +249,20 @@ def blog():
 
 @app.route('/Catagori', methods = ['Get','POST'])
 def Catagori():
-   
-   return render_template('/Catagori.html')
+   try:
+      select = str(request.form['sel'])
+      print(select)
+   except:
+      # "isme jaa rha h request.form karne par :("
+      print("kk")
+   newest=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%%") ORDER BY PROJECT_ID LIMIT 10''')
+   oldest=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%%") ORDER BY PROJECT_ID DESC LIMIT 10''')
+   highest_rated=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%%") ORDER BY Rating DESC LIMIT 10''')
+   lowest_cost=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%%") ORDER BY COST LIMIT 10''')
+   highest_cost=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%%") ORDER BY COST DESC LIMIT 10''')
+   category=""
+   filter_by_category=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%{category}% ORDER BY [S.NO] DESC"''')
+   return render_template('/Catagori.html',data=query_db(highest_cost))
 
 
 @app.route('/Confirmation', methods = ['Get','POST'])
