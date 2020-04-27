@@ -87,22 +87,22 @@ def getallBids():
       return dfFinal
    except:
       return dfFinal
-@app.route('/Cooking/', methods=['GET','POST'])
-def Cooking():
-   q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Cooking%"''')
-   return(render_template('/product_list.html',data=query_db(q)))
-@app.route('/Circuits/',methods=['GET','POST'])
-def Circuits():
-   q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Circuits%"''')
-   return(render_template('/product_list.html',data=query_db(q)))
-@app.route('/Workshop/',methods=['GET','POST'])
-def Workshop():
-   q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Workshop%"''')
-   return(render_template('/product_list.html',data=query_db(q)))
-@app.route('/Craft/',methods=['GET','POST'])
-def Craft():
-   q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Craft%"''')
-   return(render_template('/product_list.html',data=query_db(q)))
+# @app.route('/Cooking/', methods=['GET','POST'])
+# def Cooking():
+#    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Cooking%"''')
+#    return(render_template('/product_list.html',data=query_db(q)))
+# @app.route('/Circuits/',methods=['GET','POST'])
+# def Circuits():
+#    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Circuits%"''')
+#    return(render_template('/product_list.html',data=query_db(q)))
+# @app.route('/Workshop/',methods=['GET','POST'])
+# def Workshop():
+#    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Workshop%"''')
+#    return(render_template('/product_list.html',data=query_db(q)))
+# @app.route('/Craft/',methods=['GET','POST'])
+# def Craft():
+#    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Craft%"''')
+#    return(render_template('/product_list.html',data=query_db(q)))
 
 
 # SELECT title,category_name FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME='Cooking'

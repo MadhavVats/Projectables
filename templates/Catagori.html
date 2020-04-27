@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>eCommerce HTML-5 Template </title>
+    <title>Projectables - Categories </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -201,13 +201,17 @@
                                 <span>Sort by: </span>
                             </div>
                             <div class="select-itms">
-                                <form class="form-inline" method="POST" action="{{ url_for('Catagori') }}">
+                                <form class="form-inline" method="post" action="/Catagori">
                                     <select class="form-control" name="sel" id="sel" placeholder="sel">
-                                        <option value="aaa">cook</option>
-                                        <option value="">Featured A</option>
-                                        <option value="">Featured B</option>
-                                        <option value="">Featured C</option>
+                                        <option value='cook'>Newest</option>
+                                        <option value='Feature A'>Oldest</option>
+                                        <option value='Feature B'>High Rated</option>
+                                        <option value='Feature C'>Low Rated</option>
+                                        <option value='Feature C'>Low Price</option>
+                                        <option value='Feature C'>High Price</option>
+                                        <input type="submit" value="Submit">
                                     </select>
+                                    
                                 </form> 
                                 </div>
                         </div>
