@@ -249,20 +249,23 @@ def blog():
 
 @app.route('/Catagori', methods = ['Get','POST'])
 def Catagori():
+   ins='0'
    try:
-      select = str(request.form['sel'])
-      print(select)
+      ins = str(request.form['sel'])
+      print(ins)
    except:
       # "isme jaa rha h request.form karne par :("
       print("kk")
    newest=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%%") ORDER BY PROJECT_ID LIMIT 10''')
    oldest=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%%") ORDER BY PROJECT_ID DESC LIMIT 10''')
    highest_rated=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%%") ORDER BY Rating DESC LIMIT 10''')
+   lowest_rated=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%%") ORDER BY Rating LIMIT 10''')
    lowest_cost=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%%") ORDER BY COST LIMIT 10''')
    highest_cost=str(f'''SELECT * FROM Project WHERE (TITLE LIKE "%%") ORDER BY COST DESC LIMIT 10''')
    category=""
+   instructions={'0':highest_cost,'1':newest,'2':oldest,'3':highest_rated,'4':lowest_rated,'5':lowest_cost,'6':highest_cost}
    filter_by_category=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%{category}% ORDER BY [S.NO] DESC"''')
-   return render_template('/Catagori.html',data=query_db(highest_cost))
+   return render_template('/Catagori.html',data=query_db(instructions[ins]))
 
 
 @app.route('/Confirmation', methods = ['Get','POST'])
