@@ -70,17 +70,10 @@
                                         <ul id="navigation">
                                             <li><a href="{{ url_for('index_page') }}">Home</a></li>
                                             <li><a href="{{ url_for('Catagori') }}">Category</a></li>
-                                            <li class="hot"><a href="#">Latest</a>
-                                                <ul class="submenu">
-                                                    <li><a href="{{ url_for('index') }}"> Product list</a></li>
-                                                    <li><a href="single-product.html"> Product Details</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="{{ url_for('index') }}"> Product list</a></li>
                                             <li><a href="#">Pages</a>
                                                 <ul class="submenu">
                                                     <li><a href="{{ url_for('login') }}">Login</a></li>
-                                                    <li><a href="{{ url_for('cart') }}">Card</a></li>
-                                                    <li><a href="{{ url_for('elements') }}">Element</a></li>
                                                     <li><a href="{{ url_for('about') }}">About</a></li>
                                                     <li><a href="{{ url_for('Confirmation') }}">Confirmation</a></li>
                                                     <li><a href="{{ url_for('cart') }}">Shopping Cart</a></li>
