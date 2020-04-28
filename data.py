@@ -88,7 +88,29 @@ def getallBids():
    except:
       return dfFinal
 
-      
+def getAllUniqueMessengers(currentUserId,queryType = "sent"):
+   if queryType=="sent":
+      '''SELECT DISTINCT sender FROM messages WHERE receiver = 'someuser''''
+      query = f'''SELECT DISTINCT Reciever From messages WHERE Sender = {currentUserId};'''
+   elif queryType=="recieved":
+      query = f'''SELECT DISTINCT Sender From messages WHERE Reciever = {currentUserId};'''
+   
+   conn = sqlite3.connect('projectables.db')
+   c = conn.cursor()
+   c.execute(query)
+   query=c.fetchall()
+   print(query)
+   return 
+
+
+
+def getAllMessages(currentId,RequestedId):
+   return None
+
+
+def sendMessage(q):
+   
+
 def getallCart():
    q = f'''SELECT CartID,NumProject,UserID,Project_ID FROM cart GROUP BY UserID,Project_ID HAVING userid={UserID}'''
    conn = sqlite3.connect('projectables.db')
@@ -337,8 +359,9 @@ def checkBid():
 def Dashboard():
    df = getallBids()
    df2 = getallCart()
-
-   content = {"bids": df, "carts": df2}
+   dfRecieved =getAllUniqueMessengers(UserID,"recieved")
+   dfSent = getAllUniqueMessengers(UserID,"sent")
+   content = {"bids": df, "carts": df2, "messages":df3}
 
    return render_template('/Dashboard.html',data = content)
   
