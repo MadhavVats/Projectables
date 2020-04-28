@@ -331,7 +331,21 @@ def checkBid():
       conn.commit()
       # insertBid(q1)
       return redirect(url_for('onProductClick',idX=currentProductId, code=302))
-   
+
+@app.route('/msgDone/', methods = ['GET','POST'])
+def checkMsg():
+   if request.method =="POST":
+      message = request.form['message']
+      print(message)
+      msgID = int(datetime.datetime.utcnow().timestamp())
+      q1 = f'''INSERT INTO Bidding (MsgId,message,UserID,ProjectID) VALUES ({msgID},{message},{UserID},{currentProductId})'''
+      conn = sqlite3.connect('projectables.db')
+      c = conn.cursor()
+      c.execute(q1)
+      conn.commit()
+      # insertBid(q1)
+      return redirect(url_for('onProductClick',idX=currentProductId, code=302))
+
     
 @app.route('/dashboard', methods = ['Get','POST'])
 def Dashboard():
