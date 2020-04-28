@@ -332,7 +332,7 @@
             </thead>
             <tbody>
               {% for key,value in data.messagesRecieved.iterrows() %}
-              <a href="{{ url_for('Messages') }}">
+              <a href="{{ url_for('Messages',idX=value['Users']) }}">
               <tr>
                 <td>
                   <div class="media">
@@ -362,7 +362,7 @@
                       <img src="static\img\product\{{value['Image']}}" alt="" />
                     </div> -->
                     <div class="media-body">
-                      <a href="{{ url_for('Messages') }}"><p>{{ value['Users'] }}</p></a>
+                      <a href="{{ url_for('Messages',idX=value['Users']) }}"><p>{{ value['Users'] }}</p></a>
                     </div>
                   </div>
                 </td>

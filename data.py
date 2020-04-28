@@ -115,14 +115,27 @@ def getAllUniqueMessengers(currentUserId,queryType = "sent"):
    print(dfFinal)
    return dfFinal
 
-def getAllMessages():
-   q = f'''SELECT MessageID,Reciever,Sender,MessageContent FROM messages'''
+def getAllMessages(SenderID,RecieverID):
+   q = f'''SELECT MessageID,Reciever,Sender,MessageContent FROM messages WHERE Sender = {SenderID} and Reciever = {RecieverID}'''
    conn = sqlite3.connect('projectables.db')
    c = conn.cursor()
    c.execute(q)
    query=c.fetchall()
+   # print(query)
    dfFinal = pd.DataFrame(query, columns = ['MessageID','Sender','Reciever','MessageContent'])
-   return dfFinal
+   
+   q = f'''SELECT MessageID,Reciever,Sender,MessageContent FROM messages WHERE Sender = {RecieverID} and Reciever = {SenderID}'''
+   c = conn.cursor()
+   c.execute(q)
+   query=c.fetchall()
+   dfFinal2 = pd.DataFrame(query, columns = ['MessageID','Sender','Reciever','MessageContent'])
+   
+   # dfFinal.concat(dfFinal2,ignore_index=True)
+
+   frames = [dfFinal,dfFinal2]
+   final = pd.concat(frames,ignore_index=True)
+   print(final)
+   return final
 
 # def getAllMessages(currentId,RequestedId):
 #    return None
@@ -389,14 +402,15 @@ def Dashboard():
 
    return render_template('/Dashboard.html',data = content)
   
-@app.route('/messages', methods = ['GET','POST'])
-def Messages():
+@app.route('/messages?idX=<idX>', methods = ['GET','POST'])
 
-   df = getAllMessages()
-   dfRecieved =getAllUniqueMessengers(UserID,"recieved")
-   dfSent = getAllUniqueMessengers(UserID,"sent")
-   content = {"msgContent": df, "sender": dfSent, "reciever": dfRecieved}
-   return render_template('/Messages.html', data = content)
+def Messages(idX):
+   df = getAllMessages(UserID,idX)
+   # print(df)
+   # dfRecieved =getAllUniqueMessengers(UserID,"recieved")
+   # dfSent = getAllUniqueMessengers(UserID,"sent")
+   # content = {"msgContent": df}
+   return render_template('/Messages.html', data = df)
   
 if __name__ == "__main__":
    app.run(debug=True)

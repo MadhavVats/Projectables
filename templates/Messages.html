@@ -171,57 +171,35 @@
 <!-- MESSAGE TABLE =========================================================================== -->
           <table class="table">
             <thead>
+                
               <tr>
-                <th scope="col">Messages History</th>
-                <!-- <th scope="col">Quantity</th> -->
+                <th scope="col">Messages</th>
+                <th scope="col">Reciever</th>
                 <th scope="col">Time</th>
               </tr>
             </thead>
             <tbody>
-              {% for key,value in data.sender.iterrows() %}
-              {% for key2,value2 in data.msgContent.iterrows() %}
+                {% for key,value in data.iterrows() %}
               <tr>
                 <td>
                   <div class="media">
                     <div class="media-body">
-                        {% if value2['Sender'] in value['Users'] %}
-                          {{ value2['MessageContent']}}
-                        {% endif %}
+                        {{ value['MessageContent']}}
                     </div>
                   </div>
                 </td>
                 <td>
-                {% if value2['Sender'] in value['Users'] %}
-                  {{ value2['MessageID']}}
-                {% endif %}
-              </td>
-              </tr>
-              {% endfor %}
-              {% endfor %}
-            </tbody>
-             <tbody>
-              {% for key,value in data.reciever.iterrows() %}
-              {% for key2,value2 in data.msgContent.iterrows() %}
-
-              <tr>
-                <td>
-                  <div class="media">
+                <div class="media">
                     <div class="media-body">
-                        {% if value2['Sender'] in value['Users'] %}
-                          {{ value2['MessageContent']}}
-                        {% endif %}
+                        {{ value['Sender']}}
                     </div>
-                  </div>
+                </div>
                 </td>
                 <td>
-                {% if value2['Sender'] in value['Users'] %}
-                  {{ value2['MessageID']}}
-                {% endif %}
+                    {{ value['MessageID']}}
                 </td>
               </tr>
               {% endfor %}
-              {% endfor %}
-            </tbody>
           </table>
 
             <br><br>
