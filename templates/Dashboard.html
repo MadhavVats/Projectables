@@ -58,8 +58,7 @@
                                <ul>
                                    <li><a href="{{ url_for('login') }}">My Account </a></li>
                                    <li><a href="{{ url_for('index') }}">Wish List  </a></li>
-                                   <li><a href="{{ url_for('cart') }}">Shopping</a></li>
-                             
+                                   <li><a href="{{ url_for('Dashboard') }}">Dashboard</a></li>
                                </ul>
                             </div>
                         </div>
@@ -153,7 +152,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="hero-cap text-center">
-                        <h2>Card List</h2>
+                        <h2>Dashboard</h2>
                     </div>
                 </div>
             </div>
@@ -167,6 +166,29 @@
     <div class="container">
       <div class="cart_inner">
         <div class="table-responsive">
+
+          <button class="btn2" type="button">Cart items</button>
+          <button type="button">My bids</button>
+          <button type="button">Messages</button>
+
+          <script type="text/javascript">
+          (function(){
+            $(".btn2")[0].addEventListener('click', function(){
+              alert("as");
+              $(".table")[0].style.display = "none";
+              });
+          })();
+            // function myFunction() {
+            //   var x = document.getElementsByClassName("table");
+            //   if (x.style.display === "none") {
+            //     x.style.display = "block";
+            //   } else {
+            //     x.style.display = "none";
+            //   }
+            // }
+          </script>
+
+<!-- BIDS TABLE =========================================================================== -->
           <table class="table">
             <thead>
               <tr>
@@ -177,7 +199,7 @@
               </tr>
             </thead>
             <tbody>
-              {% for key,value in data.iterrows() %}
+              {% for key,value in data.bids.iterrows() %}
               <tr>
                 <td>
                   <div class="media">
@@ -208,9 +230,113 @@
                     <input class="input-number" type="text" value="1" min="0" max="10">
                     <span class="input-number-increment"> <i class="ti-plus"></i></span>
                   </div>
-                </td> --> -->
+                </td> --> 
                 <td>
                   <h5>${{ value['maxBid'] }}</h5>
+                </td>
+                
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+<!-- CART TABLE =========================================================================== -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <!-- <th scope="col">Quantity</th> -->
+                <th scope="col">Final cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for key,value in data.carts.iterrows() %}
+              <tr>
+                <td>
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="static\img\product\{{value['Image']}}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <p>{{ value['TITLE'] }}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <h5>{{ value['quantity']}}</h5>
+                </td>
+                <!-- <td>
+                  <div class="product_count">
+                     <input type="text" value="1" min="0" max="10" title="Quantity:"
+                      class="input-text qty input-number" />
+                    <button
+                      class="increase input-number-increment items-count" type="button">
+                      <i class="ti-angle-up"></i>
+                    </button>
+                    <button
+                      class="reduced input-number-decrement items-count" type="button">
+                      <i class="ti-angle-down"></i>
+                    </button> -->
+                    <!-- <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                    <input class="input-number" type="text" value="1" min="0" max="10">
+                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                  </div>
+                </td> --> 
+                <td>
+                  <h5>${{ value['COST']*value['quantity']}}</h5>
+                </td>
+                
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+<!-- MESSAGE TABLE =========================================================================== -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Message</th>
+                <th scope="col">User</th>
+                <!-- <th scope="col">Quantity</th> -->
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for key,value in data.carts.iterrows() %}
+              <tr>
+                <td>
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="static\img\product\{{value['Image']}}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <p>{{ value['TITLE'] }}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <h5>{{ value['quantity']}}</h5>
+                </td>
+                <!-- <td>
+                  <div class="product_count">
+                     <input type="text" value="1" min="0" max="10" title="Quantity:"
+                      class="input-text qty input-number" />
+                    <button
+                      class="increase input-number-increment items-count" type="button">
+                      <i class="ti-angle-up"></i>
+                    </button>
+                    <button
+                      class="reduced input-number-decrement items-count" type="button">
+                      <i class="ti-angle-down"></i>
+                    </button> -->
+                    <!-- <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                    <input class="input-number" type="text" value="1" min="0" max="10">
+                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                  </div>
+                </td> --> 
+                <td>
+                  <h5>${{ value['COST']*value['quantity']}}</h5>
                 </td>
                 
               </tr>
