@@ -7,6 +7,15 @@ app = Flask(__name__)
 UserID = 102
 currentProductId = 0
 currentProductUserID = "a"
+def hash_user(user):
+      if str(user).isnumeric():
+         return user
+      a=0
+      c=0
+      for i in user:
+         a+=(ord(i)-97)*(26**c)
+         c+=1
+      return(a)
 def query_db(q):
    print(q)
    conn = sqlite3.connect('projectables.db')
@@ -40,10 +49,13 @@ def checkLogin(user,passW):
    c.execute(q)
    print(True)
    query=c.fetchall()
-   print(query[0][0])
-   if query[0][0]==passW:
-      return True
-   else:
+   try:
+      print(query[0][0])
+      if query[0][0]==passW:
+         return True
+      else:
+         return False
+   except:
       return False
    # print(query)
    # print(len(query))
@@ -250,8 +262,8 @@ def login():
 @app.route('/CheckingLogin/', methods = ['GET','POST'])
 def login_page():
    if request.method == "POST":
-      user = request.form['Username']
-      passW = request.form['Password']
+      user = hash_user(request.form['Username'])
+      passW =hash_user(request.form['Password'])
       print(user,passW)
       global UserID
       UserID = user
@@ -270,8 +282,8 @@ def signup_page():
 @app.route('/SignUp/', methods = ['GET','POST'])
 def add_user():
    if request.method =="POST":
-      user = str(request.form['Username'])
-      passW = str(request.form['Password'])
+      user =hash_user(str(request.form['Username']))
+      passW = hash_user(str(request.form['Password']))
       name = str(request.form['name'])
       phoneNum = request.form['PhoneNumber']
       email = str(request.form['email'])
