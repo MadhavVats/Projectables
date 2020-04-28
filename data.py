@@ -88,8 +88,7 @@ def getallBids():
    except:
       return dfFinal
 
-
-
+      
 def getallCart():
    q = f'''SELECT CartID,NumProject,UserID,Project_ID FROM cart GROUP BY UserID,Project_ID HAVING userid={UserID}'''
    conn = sqlite3.connect('projectables.db')
@@ -117,7 +116,6 @@ def getallCart():
       return dfFinal
    except:
       return dfFinal 
-      
 # @app.route('/Cooking/', methods=['GET','POST'])
 # def Cooking():
 #    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Cooking%"''')
@@ -334,6 +332,7 @@ def checkBid():
       # insertBid(q1)
       return redirect(url_for('onProductClick',idX=currentProductId, code=302))
    
+    
 @app.route('/dashboard', methods = ['Get','POST'])
 def Dashboard():
    df = getallBids()
