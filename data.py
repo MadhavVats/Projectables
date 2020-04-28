@@ -6,14 +6,16 @@ import datetime
 app = Flask(__name__)
 UserID = 102
 currentProductId = 0
+currentProductUserID = "a"
 def query_db(q):
    print(q)
-   
    conn = sqlite3.connect('projectables.db')
    c = conn.cursor()
    c.execute(q)
    query=c.fetchall()
-   # print(query)
+   print(query)
+   global currentProductUserID
+   currentProductUserID = query[0][4]
    df = pd.DataFrame(query,columns=['PROJECT_ID','[S.NO.]','TITLE','CONTENT','OWNER_ID','COST','AUTHOR','RATING','Image'])
    return(df)
 
@@ -29,16 +31,25 @@ def query_dbX(q):
 def checkLogin(user,passW):
    conn = sqlite3.connect('projectables.db')
    c = conn.cursor()
-   q = f'''SELECT * FROM Users u WHERE u.UserID = {user} and u.Password = {passW}'''
-   
-   try:
-      c.execute(q)
-      query=c.fetchall()
-      # print(query)
-      # print(len(query))
+   q = f'''SELECT Password FROM Users u WHERE u.UserID = {str(user)}'''
+   print
+   # if Password == passW:
+      # return
+   # try:
+   print(q)
+   c.execute(q)
+   print(True)
+   query=c.fetchall()
+   print(query[0][0])
+   if query[0][0]==passW:
       return True
-   except:
+   else:
       return False
+   # print(query)
+   # print(len(query))
+   # return True
+   # except:
+      # return False
 
 def getMaxBid(val = currentProductId):
    q2 = f'''SELECT MAX(BidValue) FROM Bidding WHERE ProjectID = {val};'''
@@ -61,14 +72,15 @@ def insertBid(q):
 
 
 def getallBids():
-   q = f'''SELECT BidId,MAX(BidValue),UserID,ProjectID FROM Bidding GROUP BY UserID,ProjectID HAVING userid={UserID}'''
-   conn = sqlite3.connect('projectables.db')
-   c = conn.cursor()
-   c.execute(q)
-   query=c.fetchall()
+   
 
    dfFinal = pd.DataFrame(columns = ['PROJECT_ID','[S.NO.]','TITLE','CONTENT','OWNER_ID','COST','AUTHOR','RATING','Image','maxBid'])
    try:
+      q = f'''SELECT BidId,MAX(BidValue),UserID,ProjectID FROM Bidding GROUP BY UserID,ProjectID HAVING userid={UserID}'''
+      conn = sqlite3.connect('projectables.db')
+      c = conn.cursor()
+      c.execute(q)
+      query=c.fetchall()
       abX = []
       # dfFinal = query_db(query[0][3])
       # dfFinal['maxBid'] = getMaxBid(query[0][3])
@@ -88,7 +100,30 @@ def getallBids():
    except:
       return dfFinal
 
-      
+def getAllUniqueMessengers(currentUserId,queryType = "sent"):
+   if queryType=="sent":
+      # '''SELECT DISTINCT sender FROM messages WHERE receiver = 'someuser''''
+      query = f'''SELECT DISTINCT Reciever From messages WHERE Sender = {currentUserId};'''
+   elif queryType=="recieved":
+      query = f'''SELECT DISTINCT Sender From messages WHERE Reciever = {currentUserId};'''
+   conn = sqlite3.connect('projectables.db')
+   c = conn.cursor()
+   c.execute(query)
+   query=c.fetchall()
+   print(query)
+   dfFinal = pd.DataFrame(query,columns = ['Users'])
+   print(dfFinal)
+   return dfFinal
+
+
+
+# def getAllMessages(currentId,RequestedId):
+#    return None
+
+
+# def sendMessage(q):
+   
+
 def getallCart():
    q = f'''SELECT CartID,NumProject,UserID,Project_ID FROM cart GROUP BY UserID,Project_ID HAVING userid={UserID}'''
    conn = sqlite3.connect('projectables.db')
@@ -116,23 +151,6 @@ def getallCart():
       return dfFinal
    except:
       return dfFinal 
-# @app.route('/Cooking/', methods=['GET','POST'])
-# def Cooking():
-#    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Cooking%"''')
-#    return(render_template('/product_list.html',data=query_db(q)))
-# @app.route('/Circuits/',methods=['GET','POST'])
-# def Circuits():
-#    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Circuits%"''')
-#    return(render_template('/product_list.html',data=query_db(q)))
-# @app.route('/Workshop/',methods=['GET','POST'])
-# def Workshop():
-#    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Workshop%"''')
-#    return(render_template('/product_list.html',data=query_db(q)))
-# @app.route('/Craft/',methods=['GET','POST'])
-# def Craft():
-#    q=str(f'''SELECT Project.PROJECT_ID,[S.NO.],TITLE,CONTENT,OWNER_ID,COST,AUTHOR,RATING,Image FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME LIKE "%Craft%"''')
-#    return(render_template('/product_list.html',data=query_db(q)))
-
 
 # SELECT title,category_name FROM Categories,Categories_Project_Relation,Project WHERE Categories.category_id=Categories_Project_Relation.category_id AND Project.PROJECT_ID=Categories_Project_Relation.PROJECT_ID AND Categories.CATEGORY_NAME='Cooking'
 @app.route('/',methods=['GET','POST'])
@@ -187,12 +205,16 @@ def onProductClick(idX):
    valMaxBid = getMaxBid()
    if valMaxBid ==0:
       valMaxBid = "No Bid Yet"
-
+   global currentProductUserID
+   print(type(df['OWNER_ID']))
+   print(len(df['OWNER_ID']))
+   print(df['OWNER_ID'])
+   # currentProductUserID = df['OWNER_ID']
    df['maxBid'] = valMaxBid
-
-   print(df)
-   for i in df:
-      print(df[i])
+   # print(currentProductUserID)
+   # print(df)
+   # for i in df:
+   #    print(df[i])
 
    return (render_template('/single-product.html',data=df))
 
@@ -331,14 +353,32 @@ def checkBid():
       conn.commit()
       # insertBid(q1)
       return redirect(url_for('onProductClick',idX=currentProductId, code=302))
-   
+
+@app.route('/msgDone/', methods = ['GET','POST'])
+def checkMsg():
+   if request.method =="POST":
+      message = request.form['message']
+      print(message)
+      global currentProductUserID
+      SenderID = str(currentProductUserID)
+      msgID = int(datetime.datetime.utcnow().timestamp())
+      q1 = f'''INSERT INTO messages (Sender,Reciever,MessageID,MessageContent) VALUES (?,?,?,?)'''
+      vas = (UserID,SenderID,msgID,message)
+      conn = sqlite3.connect('projectables.db')
+      c = conn.cursor()
+      c.execute(q1,vas)
+      conn.commit()
+      # insertBid(q1)
+      return redirect(url_for('onProductClick',idX=currentProductId, code=302))
+
     
 @app.route('/dashboard', methods = ['Get','POST'])
 def Dashboard():
    df = getallBids()
    df2 = getallCart()
-
-   content = {"bids": df, "carts": df2}
+   dfRecieved =getAllUniqueMessengers(UserID,"recieved")
+   dfSent = getAllUniqueMessengers(UserID,"sent")
+   content = {"bids": df, "carts": df2, "messagesRecieved":dfRecieved, "messagesSent":dfSent}
 
    return render_template('/Dashboard.html',data = content)
   
