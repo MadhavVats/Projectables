@@ -42,7 +42,7 @@
                                     <form action="#">
                                         <div class="select-itms">
                                             <select name="select" id="select1">
-                                                <option value="">USA</option>
+                                                <option value="">IND</option>
                                                 <option value="">SPN</option>
                                                 <option value="">CDA</option>
                                                 <option value="">USD</option>
@@ -51,7 +51,7 @@
                                     </form>
                                 </div>
                                 <ul class="contact-now">
-                                    <li>+777 2345 7886</li>
+                                    <li>+91 6969 1010</li>
                                 </ul>
                             </div>
                             <div class="header-info-right">
@@ -167,29 +167,60 @@
       <div class="cart_inner">
         <div class="table-responsive">
 
-          <button class="btn2" type="button">Cart items</button>
-          <button type="button">My bids</button>
-          <button type="button">Messages</button>
+          <button class="btn1" type="button" onclick="myFunction1()" style="background-color: #ffc30c; color: black; border-radius: 10px; font-size: 1.5em; width: 20vw; margin-left: 5%">Cart items</button>
+          
+          <button class="btn2" type="button" onclick="myFunction2()" style="background-color: black; color: #ffc30c; border-radius: 10px; font-size: 1.5em; width: 20vw; margin-left: 5%">My bids</button>
+          
+          <button class="btn3" type="button" onclick="myFunction3()" style=" background-color: black; color: #ffc30c;border-radius: 10px; font-size: 1.5em; width: 20vw; margin-left: 5%">Messages</button>
 
+          <br><br><br>
           <script type="text/javascript">
-          (function(){
-            $(".btn2")[0].addEventListener('click', function(){
-              alert("as");
-              $(".table")[0].style.display = "none";
-              });
-          })();
-            // function myFunction() {
-            //   var x = document.getElementsByClassName("table");
-            //   if (x.style.display === "none") {
-            //     x.style.display = "block";
-            //   } else {
-            //     x.style.display = "none";
-            //   }
-            // }
+
+            function myFunction1() {
+              var x = document.getElementsByClassName("table");
+              x[1].style.display = "block";
+              $('button')[0].style.backgroundColor = "#ffc30c";
+              $('button')[0].style.color = "black";
+              x[0].style.display = "none";
+              $('button')[1].style.color = "#ffc30c";
+              $('button')[1].style.backgroundColor = "black";
+              x[2].style.display = "none";
+              x[3].style.display = "none";
+              $('button')[2].style.color = "#ffc30c";
+              $('button')[2].style.backgroundColor = "black";
+            }
+
+            function myFunction2() {
+              var x = document.getElementsByClassName("table");
+              x[0].style.display = "block";
+              $('button')[1].style.backgroundColor = "#ffc30c";
+              $('button')[1].style.color = "black";
+              x[1].style.display = "none";
+              $('button')[0].style.color = "#ffc30c";
+              $('button')[0].style.backgroundColor = "black";
+              x[2].style.display = "none";
+              x[3].style.display = "none";
+             $('button')[2].style.color = "#ffc30c";
+              $('button')[2].style.backgroundColor = "black";
+            }
+
+            function myFunction3() {
+              var x = document.getElementsByClassName("table");
+              x[2].style.display = "block";
+              x[3].style.display = "block";
+              $('button')[2].style.backgroundColor = "#ffc30c";
+              $('button')[2].style.color = "black";
+              x[0].style.display = "none";
+              $('button')[1].style.color = "#ffc30c";
+              $('button')[1].style.backgroundColor = "black";
+              x[1].style.display = "none";
+              $('button')[0].style.color = "#ffc30c";
+              $('button')[0].style.backgroundColor = "black";
+            }
           </script>
 
 <!-- BIDS TABLE =========================================================================== -->
-          <table class="table">
+          <table class="table" style="display: none">
             <thead>
               <tr>
                 <th scope="col">Product</th>
@@ -293,10 +324,63 @@
           </table>
 
 <!-- MESSAGE TABLE =========================================================================== -->
-          <table class="table">
+          <table class="table" style="display: none">
             <thead>
               <tr>
-                <th scope="col">Message</th>
+                <th scope="col">Messages Received</th>
+                <th scope="col">User</th>
+                <!-- <th scope="col">Quantity</th> -->
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for key,value in data.carts.iterrows() %}
+              <tr>
+                <td>
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="static\img\product\{{value['Image']}}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <p>{{ value['TITLE'] }}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <h5>{{ value['quantity']}}</h5>
+                </td>
+                <!-- <td>
+                  <div class="product_count">
+                     <input type="text" value="1" min="0" max="10" title="Quantity:"
+                      class="input-text qty input-number" />
+                    <button
+                      class="increase input-number-increment items-count" type="button">
+                      <i class="ti-angle-up"></i>
+                    </button>
+                    <button
+                      class="reduced input-number-decrement items-count" type="button">
+                      <i class="ti-angle-down"></i>
+                    </button> -->
+                    <!-- <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                    <input class="input-number" type="text" value="1" min="0" max="10">
+                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                  </div>
+                </td> --> 
+                <td>
+                  <h5>${{ value['COST']*value['quantity']}}</h5>
+                </td>
+                
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+            <br><br>
+
+          <table class="table" style="display: none">
+            <thead>
+              <tr>
+                <th scope="col">Messages Sent</th>
                 <th scope="col">User</th>
                 <!-- <th scope="col">Quantity</th> -->
                 <th scope="col">Time</th>
