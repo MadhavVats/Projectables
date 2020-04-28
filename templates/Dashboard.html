@@ -334,21 +334,21 @@
               </tr>
             </thead>
             <tbody>
-              {% for key,value in data.carts.iterrows() %}
+              {% for key,value in data.messagesRecieved.iterrows() %}
               <tr>
                 <td>
                   <div class="media">
-                    <div class="d-flex">
+                    <!-- <div class="d-flex">
                       <img src="static\img\product\{{value['Image']}}" alt="" />
-                    </div>
+                    </div> -->
                     <div class="media-body">
-                      <p>{{ value['TITLE'] }}</p>
+                      <p>{{ value['Users'] }}</p>
                     </div>
                   </div>
                 </td>
-                <td>
+                <!-- <td>
                   <h5>{{ value['quantity']}}</h5>
-                </td>
+                </td> -->
                 <!-- <td>
                   <div class="product_count">
                      <input type="text" value="1" min="0" max="10" title="Quantity:"
@@ -366,9 +366,9 @@
                     <span class="input-number-increment"> <i class="ti-plus"></i></span>
                   </div>
                 </td> --> 
-                <td>
+                <!-- <td>
                   <h5>${{ value['COST']*value['quantity']}}</h5>
-                </td>
+                </td> -->
                 
               </tr>
               {% endfor %}
@@ -387,21 +387,21 @@
               </tr>
             </thead>
             <tbody>
-              {% for key,value in data.carts.iterrows() %}
+              {% for key,value in data.messagesSent.iterrows() %}
               <tr>
                 <td>
                   <div class="media">
-                    <div class="d-flex">
+                    <!-- <div class="d-flex">
                       <img src="static\img\product\{{value['Image']}}" alt="" />
-                    </div>
+                    </div> -->
                     <div class="media-body">
-                      <p>{{ value['TITLE'] }}</p>
+                      <p>{{ value['Users'] }}</p>
                     </div>
                   </div>
                 </td>
-                <td>
+                <!-- <td>
                   <h5>{{ value['quantity']}}</h5>
-                </td>
+                </td> -->
                 <!-- <td>
                   <div class="product_count">
                      <input type="text" value="1" min="0" max="10" title="Quantity:"
@@ -419,9 +419,7 @@
                     <span class="input-number-increment"> <i class="ti-plus"></i></span>
                   </div>
                 </td> --> 
-                <td>
-                  <h5>${{ value['COST']*value['quantity']}}</h5>
-                </td>
+      
                 
               </tr>
               {% endfor %}
