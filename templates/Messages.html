@@ -152,7 +152,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="hero-cap text-center">
-                        <h2>Dashboard</h2>
+                        <h2>Messages</h2>
                     </div>
                 </div>
             </div>
@@ -167,212 +167,66 @@
       <div class="cart_inner">
         <div class="table-responsive">
 
-          <button class="btn1" type="button" onclick="myFunction1()" style="background-color: #ffc30c; color: black; border-radius: 10px; font-size: 1.5em; width: 20vw; margin-left: 5%">Cart items</button>
-          
-          <button class="btn2" type="button" onclick="myFunction2()" style="background-color: black; color: #ffc30c; border-radius: 10px; font-size: 1.5em; width: 20vw; margin-left: 5%">My bids</button>
-          
-          <button class="btn3" type="button" onclick="myFunction3()" style=" background-color: black; color: #ffc30c;border-radius: 10px; font-size: 1.5em; width: 20vw; margin-left: 5%">Messages</button>
 
-          <br><br><br>
-          <script type="text/javascript">
-
-            function myFunction1() {
-              var x = document.getElementsByClassName("table");
-              x[1].style.display = "block";
-              $('button')[0].style.backgroundColor = "#ffc30c";
-              $('button')[0].style.color = "black";
-              x[0].style.display = "none";
-              $('button')[1].style.color = "#ffc30c";
-              $('button')[1].style.backgroundColor = "black";
-              x[2].style.display = "none";
-              $('button')[2].style.color = "#ffc30c";
-              $('button')[2].style.backgroundColor = "black";
-            }
-
-            function myFunction2() {
-              var x = document.getElementsByClassName("table");
-              x[0].style.display = "block";
-              $('button')[1].style.backgroundColor = "#ffc30c";
-              $('button')[1].style.color = "black";
-              x[1].style.display = "none";
-              $('button')[0].style.color = "#ffc30c";
-              $('button')[0].style.backgroundColor = "black";
-              x[2].style.display = "none";
-             $('button')[2].style.color = "#ffc30c";
-              $('button')[2].style.backgroundColor = "black";
-            }
-
-            function myFunction3() {
-              var x = document.getElementsByClassName("table");
-              x[2].style.display = "block";
-              $('button')[2].style.backgroundColor = "#ffc30c";
-              $('button')[2].style.color = "black";
-              x[0].style.display = "none";
-              $('button')[1].style.color = "#ffc30c";
-              $('button')[1].style.backgroundColor = "black";
-              x[1].style.display = "none";
-              $('button')[0].style.color = "#ffc30c";
-              $('button')[0].style.backgroundColor = "black";
-            }
-          </script>
-
-<!-- BIDS TABLE =========================================================================== -->
-          <table class="table" style="display: none">
-            <thead>
-              <tr>
-                <th scope="col">Product</th>
-                <th scope="col">My Bid</th>
-                <!-- <th scope="col">Quantity</th> -->
-                <th scope="col">Max Bid</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for key,value in data.bids.iterrows() %}
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="static\img\product\{{value['Image']}}" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>{{ value['TITLE'] }}</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>${{ value['myBid'] }}</h5>
-                </td>
-                <!-- <td>
-                  <div class="product_count">
-                    <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
-                      class="input-text qty input-number" />
-                    <button
-                      class="increase input-number-increment items-count" type="button">
-                      <i class="ti-angle-up"></i>
-                    </button>
-                    <button
-                      class="reduced input-number-decrement items-count" type="button">
-                      <i class="ti-angle-down"></i>
-                    </button> -->
-                    <!-- <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                    <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
-                  </div>
-                </td> --> 
-                <td>
-                  <h5>${{ value['maxBid'] }}</h5>
-                </td>
-                
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-
-<!-- CART TABLE =========================================================================== -->
+<!-- MESSAGE TABLE =========================================================================== -->
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
-                <!-- <th scope="col">Quantity</th> -->
-                <th scope="col">Final cost</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for key,value in data.carts.iterrows() %}
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="static\img\product\{{value['Image']}}" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>{{ value['TITLE'] }}</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>{{ value['quantity']}}</h5>
-                </td>
-                <!-- <td>
-                  <div class="product_count">
-                     <input type="text" value="1" min="0" max="10" title="Quantity:"
-                      class="input-text qty input-number" />
-                    <button
-                      class="increase input-number-increment items-count" type="button">
-                      <i class="ti-angle-up"></i>
-                    </button>
-                    <button
-                      class="reduced input-number-decrement items-count" type="button">
-                      <i class="ti-angle-down"></i>
-                    </button> -->
-                    <!-- <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                    <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
-                  </div>
-                </td> --> 
-                <td>
-                  <h5>${{ value['COST']*value['quantity']}}</h5>
-                </td>
-                
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-
-<!-- MESSAGE TABLE =========================================================================== -->
-          <table class="table" style="display: none">
-            <thead>
-              <tr>
-                <th scope="col">Users Interacted with</th>
-                <th scope="col">User's name</th>
+                <th scope="col">Messages History</th>
                 <!-- <th scope="col">Quantity</th> -->
                 <th scope="col">Time</th>
               </tr>
             </thead>
             <tbody>
-              {% for key,value in data.messagesRecieved.iterrows() %}
-              <a href="{{ url_for('Messages') }}">
+              {% for key,value in data.sender.iterrows() %}
+              {% for key2,value2 in data.msgContent.iterrows() %}
               <tr>
                 <td>
                   <div class="media">
-                    <!-- <div class="d-flex">
-                      <img src="static\img\product\{{value['Image']}}" alt="" />
-                    </div> -->
                     <div class="media-body">
-                      <p>{{ value['Users'] }}</p>
+                        {% if value2['Sender'] in value['Users'] %}
+                          {{ value2['MessageContent']}}
+                        {% endif %}
                     </div>
                   </div>
                 </td>
                 <td>
-                  <!-- user's name -->
-                </td>
-                <td>
-                  <!-- time -->
-                </td>
+                {% if value2['Sender'] in value['Users'] %}
+                  {{ value2['MessageID']}}
+                {% endif %}
+              </td>
               </tr>
-              </a>
               {% endfor %}
+              {% endfor %}
+            </tbody>
+             <tbody>
+              {% for key,value in data.reciever.iterrows() %}
+              {% for key2,value2 in data.msgContent.iterrows() %}
 
-              {% for key,value in data.messagesSent.iterrows() %}
               <tr>
                 <td>
                   <div class="media">
-                    <!-- <div class="d-flex">
-                      <img src="static\img\product\{{value['Image']}}" alt="" />
-                    </div> -->
                     <div class="media-body">
-                      <a href="{{ url_for('Messages') }}"><p>{{ value['Users'] }}</p></a>
+                        {% if value2['Sender'] in value['Users'] %}
+                          {{ value2['MessageContent']}}
+                        {% endif %}
                     </div>
                   </div>
                 </td>
+                <td>
+                {% if value2['Sender'] in value['Users'] %}
+                  {{ value2['MessageID']}}
+                {% endif %}
+                </td>
               </tr>
+              {% endfor %}
               {% endfor %}
             </tbody>
           </table>
 
             <br><br>
 
+  
           <!-- <div class="checkout_btn_inner float-right">
             <a class="btn_1" href="#">Continue Shopping</a>
             <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
