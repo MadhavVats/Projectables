@@ -172,54 +172,28 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">Messages History</th>
-                <!-- <th scope="col">Quantity</th> -->
+                <th scope="col">Messages</th>
+                <th scope="col">Sender</th>
                 <th scope="col">Time</th>
               </tr>
             </thead>
             <tbody>
-              {% for key,value in data.sender.iterrows() %}
-              {% for key2,value2 in data.msgContent.iterrows() %}
+              {% for key,value in data.iterrows() %}
               <tr>
                 <td>
                   <div class="media">
                     <div class="media-body">
-                        {% if value2['Sender'] in value['Users'] %}
-                          {{ value2['MessageContent']}}
-                        {% endif %}
+                        {{value['MessageContent']}}
                     </div>
                   </div>
                 </td>
                 <td>
-                {% if value2['Sender'] in value['Users'] %}
-                  {{ value2['MessageID']}}
-                {% endif %}
-              </td>
-              </tr>
-              {% endfor %}
-              {% endfor %}
-            </tbody>
-             <tbody>
-              {% for key,value in data.reciever.iterrows() %}
-              {% for key2,value2 in data.msgContent.iterrows() %}
-
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="media-body">
-                        {% if value2['Sender'] in value['Users'] %}
-                          {{ value2['MessageContent']}}
-                        {% endif %}
-                    </div>
-                  </div>
+                    {{value['Sender']}}
                 </td>
                 <td>
-                {% if value2['Sender'] in value['Users'] %}
-                  {{ value2['MessageID']}}
-                {% endif %}
+                    {{value['MessageID']}}
                 </td>
               </tr>
-              {% endfor %}
               {% endfor %}
             </tbody>
           </table>
@@ -235,7 +209,7 @@
       </div>
 
       <h2>Send a message to the owner</h2>
-          <form class="row contact_form" action="/msgDone/" method="post">
+          <form class="row contact_form" action="/messageSent/" method="post">
               <div class="col-md-12 form-group p_star">
                   <input type="text" class="form-control" id="message" name="message" value=""
                       placeholder="message">
